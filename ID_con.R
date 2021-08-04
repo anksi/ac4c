@@ -396,14 +396,16 @@ deg <- topTags(lrt, n = Inf, p = 0.05)$table
 
 up <- deg[deg$logFC > 0,]
 down <- deg[deg$logFC < 0,]
+nrow(up_new)
+nrow(down_new)
 nrow(lrt)
 
 #while comparing WT and NAT10 we found 8 genes to be regulated and 12 genes to be downregulated
 
 # while comparing WTi vs WTo, none of the genes are found to be sig up/down regulated 
-Wt_i_o <- cbind(rownames(lrt$table),lrt$table)
-colnames(Wt_i_o) <- c("SYMBOL","logFC","logCPM","LR","PValue")                 
-write.table(Wt_i_o, file = "WT_ovsI_entireTable_new.txt", row.names = F, sep = "\t", quote = F)
+WtiovsNAT10io <- cbind(rownames(lrt$table),lrt$table)
+colnames(WtiovsNAT10io) <- c("SYMBOL","logFC","logCPM","LR","PValue")                 
+write.table(WtiovsNAT10io, file = "WT_oivsNAT10_oi.txt", row.names = F, sep = "\t", quote = F)
 
 NAT10_i_o <- cbind(rownames(lrt$table),lrt$table)
 colnames(NAT10_i_o) <- c("SYMBOL","logFC","logCPM","LR","PValue")                 
@@ -412,12 +414,12 @@ write.table(NAT10_i_o, file = "NAT10_ovsI_entireTable_new_new.txt", row.names = 
 up <- cbind(rownames(up), up)
 rownames(up) <- NULL
 colnames(up) <- c("SYMBOL", "logFC", "logCPM", "LR","PValue","FDR")
-write.table(up, file = "up_nucleolous.txt", row.names = F, sep = "\t", quote = F)
+write.table(up, file = "up_modified.txt", row.names = F, sep = "\t", quote = F)
 
 down <- cbind(rownames(down), down)
 rownames(down) <- NULL
-colnames(up) <- c("SYMBOL", "logFC", "logCPM", "LR","PValue","FDR")
-write.table(down, file = "down_nucleolous.txt", row.names = F, sep = "\t", quote = F)
+colnames(down) <- c("SYMBOL", "logFC", "logCPM", "LR","PValue","FDR")
+write.table(down, file = "down_modified.txt", row.names = F, sep = "\t", quote = F)
 
 up <- cbind(rownames(up), up)
 rownames(up) <- NULL
